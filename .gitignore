@@ -1,0 +1,9 @@
+*.class
+
+# Package Files #
+*.jar
+
+.idea/workspace.xml
+.idea/dataSources.ids
+.idea/dataSources.local.xml
+.idea/dictionaries
