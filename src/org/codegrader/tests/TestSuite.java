@@ -28,6 +28,22 @@ public class TestSuite implements Iterable<TestGroup> {
 		return points;
 	}
 
+	public String prettyResults() {
+		StringBuilder builder = new StringBuilder(
+				String.format("Total score (%s / %s):\n", getScore(), totalPoints));
+		for (TestGroup group : groups) {
+			builder.append(String.format("%s (%s / %s)\n",
+					group.name, group.getScore(), group.totalPoints));
+
+			for (TestCase test : group) {
+				if (!test.succeeded) {
+					builder.append("Test failed: ").append(test.description).append("\n");
+				}
+			}
+		}
+		return builder.toString();
+	}
+
 	@Override
 	public String toString() {
 		return "totalPoints : " + totalPoints + "\n" + groups.toString();

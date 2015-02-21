@@ -23,11 +23,9 @@ public class TestsParser {
 
 		for (TestGroup group : tests) {
 			for (TestCase test : group) {
-				test.succeeded = true;
+				test.succeeded = Math.random() > 0.5d;
 			}
-			System.out.println(group.getScore() + " / " + group.totalPoints);
 		}
-
-		System.out.println(tests.getScore() + " / " + tests.totalPoints);
+		System.out.println(tests.prettyResults());
 	}
 }
