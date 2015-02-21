@@ -1,11 +1,6 @@
 package org.codegrader.tests;
 
-import java.math.BigDecimal;
-import java.util.AbstractCollection;
-
-import org.apache.commons.csv.CSVRecord;
-
-public class Test {
+public class TestCase {
 	public final String input, expectedOutput, description;
 	public final double weight;
 	public Boolean succeeded;
@@ -14,7 +9,7 @@ public class Test {
 	 * @param values One line of a CSV with format input,output,description,weight
 	 *               weight is optional
 	 */
-	public Test(Iterable<String> line) {
+	public TestCase(Iterable<String> line) {
 		String input = null, expectedOutput = null, description = null;
 		Double weight = null;
 
