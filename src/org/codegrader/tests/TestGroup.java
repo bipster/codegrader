@@ -11,8 +11,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-public class TestGroup implements Iterable<Test> {
-	final List<Test> tests = new ArrayList<>();
+public class TestGroup implements Iterable<TestCase> {
+	final List<TestCase> tests = new ArrayList<>();
 	final String name;
 	final double totalPoints, totalWeight;
 
@@ -35,7 +35,7 @@ public class TestGroup implements Iterable<Test> {
 		double totalWeight = 0;
 		CSVParser parser = CSVParser.parse(file, Charset.defaultCharset(), CSVFormat.DEFAULT);
 		for (CSVRecord record : parser) {
-			Test test = new Test(record);
+			TestCase test = new TestCase(record);
 			tests.add(test);
 			totalWeight += test.weight;
 		}
@@ -45,7 +45,7 @@ public class TestGroup implements Iterable<Test> {
 	public double getScore() {
 		double successfulWeight = 0;
 		try {
-			for (Test test : tests) {
+			for (TestCase test : tests) {
 				if (test.succeeded) {
 					successfulWeight += test.weight;
 				}
@@ -63,7 +63,7 @@ public class TestGroup implements Iterable<Test> {
 	}
 
 	@Override
-	public Iterator<Test> iterator() {
+	public Iterator<TestCase> iterator() {
 		return tests.iterator();
 	}
 }

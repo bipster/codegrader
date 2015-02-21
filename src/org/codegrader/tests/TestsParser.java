@@ -22,7 +22,7 @@ public class TestsParser {
 		System.out.println(tests.toString());
 
 		for (TestGroup group : tests) {
-			for (Test test : group) {
+			for (TestCase test : group) {
 				test.succeeded = true;
 			}
 			System.out.println(group.getScore() + " / " + group.totalPoints);
