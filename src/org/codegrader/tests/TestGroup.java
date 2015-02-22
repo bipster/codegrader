@@ -46,7 +46,7 @@ public class TestGroup implements Iterable<TestCase> {
 		double successfulWeight = 0;
 		try {
 			for (TestCase test : tests) {
-				if (test.succeeded) {
+				if (test.getSucceeded()) {
 					successfulWeight += test.weight;
 				}
 			}

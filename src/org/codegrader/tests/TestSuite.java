@@ -30,14 +30,17 @@ public class TestSuite implements Iterable<TestGroup> {
 
 	public String prettyResults() {
 		StringBuilder builder = new StringBuilder(
-				String.format("Total score (%s / %s):\n", getScore(), totalPoints));
+				String.format("Total score (%.2f / %.2f):\n", getScore(), totalPoints));
 		for (TestGroup group : groups) {
-			builder.append(String.format("%s (%s / %s)\n",
+			builder.append(String.format("%s (%.2f / %.2f)\n",
 					group.name, group.getScore(), group.totalPoints));
 
 			for (TestCase test : group) {
-				if (!test.succeeded) {
-					builder.append("Test failed: ").append(test.description).append("\n");
+				if (!test.getSucceeded()) {
+					builder.append(String.format(
+							"Test failed: %s\nExpected: %s\nReceived: %s\n",
+							test.description, test.expectedOutput, test.getActualOutput()
+					));
 				}
 			}
 		}
