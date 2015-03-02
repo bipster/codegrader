@@ -17,17 +17,13 @@ public class TestsParser {
 	 */
 	public static void main(String[] args) throws IOException {
 		File file = new File("tests");
-		System.out.println(file.getAbsolutePath());
 		TestSuite tests = parseTests(file);
-		System.out.println(tests.toString());
 
 		for (TestGroup group : tests) {
 			for (TestCase test : group) {
-				test.succeeded = true;
+				test.setActualOutput(Math.random() > 0.5d ? test.expectedOutput : "bad output");
 			}
-			System.out.println(group.getScore() + " / " + group.totalPoints);
 		}
-
-		System.out.println(tests.getScore() + " / " + tests.totalPoints);
+		System.out.println(tests.prettyResults());
 	}
 }

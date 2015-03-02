@@ -1,9 +1,12 @@
 package org.codegrader.tests;
 
 public class TestCase {
+	// Fields parsed from CSV
 	public final String input, expectedOutput, description;
 	public final double weight;
-	public Boolean succeeded;
+	// Test results
+	private String actualOutput;
+	private Boolean succeeded;
 
 	/**
 	 * @param values One line of a CSV with format input,output,description,weight
@@ -31,6 +34,19 @@ public class TestCase {
 		this.expectedOutput = expectedOutput;
 		this.description = description;
 		this.weight = weight == null ? 1 : weight;
+	}
+
+	public void setActualOutput(String output) {
+		this.actualOutput = output;
+		this.succeeded = expectedOutput.equals(actualOutput);
+	}
+
+	public String getActualOutput() {
+		return this.actualOutput;
+	}
+
+	public Boolean getSucceeded() {
+		return this.succeeded;
 	}
 
 	@Override
